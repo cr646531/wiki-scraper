@@ -27,6 +27,12 @@ app.post('/api/users', (req, res, next)=> {
     .catch(next);
 });
 
+app.post('/api/users/reset', (req, res, next)=> {
+  db.syncAndSeed()
+    .then(()=> res.sendStatus(204))
+    .catch(next);
+});
+
 app.put('/api/users/:id', (req, res, next)=> {
   User.findById(req.params.id)
     .then( user => user.update(req.body))
@@ -42,6 +48,7 @@ app.delete('/api/users/:id', (req, res, next)=> {
 });
 
 app.use((err, req, res, next)=> {
+  console.log(err);
   res.status(500).send({ error: err.message });
 });
 

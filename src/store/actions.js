@@ -21,9 +21,20 @@ const _destroyUser = (user)=>({
   user
 });
 
-const destroyUser = (user)=> {};
-const createUser = (user)=> {};
-const updateUser = (user)=> {};
+const destroyUser = (user)=> {
+  return (dispatch)=> {
+    return axios.delete(`/api/users/${user.id}`)
+      .then( response => response.data)
+      .then( () => dispatch(_destroyUser(user))); 
+  }
+};
+
+const createUser = (user)=> {
+
+};
+const updateUser = (user)=> {
+
+};
 const loadUsers = ()=> {
   return (dispatch)=> {
     return axios.get('/api/users')
@@ -32,4 +43,11 @@ const loadUsers = ()=> {
   }
 };
 
-export { detroyUser, createUser, updateUser, loadUsers };
+const reset = ()=> {
+  return (dispatch)=> {
+    return axios.post('/api/users/reset')
+      .then( () => dispatch(loadUsers())); 
+  }
+};
+
+export { reset, destroyUser, createUser, updateUser, loadUsers };
