@@ -5,9 +5,9 @@ const syncAndSeed = ()=> {
   return conn.sync({ force: true })
     .then(()=> {
       return Promise.all([
-        User.create({ name: 'moe' }),
-        User.create({ name: 'larry' }),
-        User.create({ name: 'curly' }),
+        User.create({ name: 'moe', password: 'MOE' }),
+        User.create({ name: 'larry', password: 'LARRY' }),
+        User.create({ name: 'curly', password: 'CURLY' }),
       ]);
     });
 };

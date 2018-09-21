@@ -7,6 +7,14 @@ const User = conn.define('user', {
     validate: {
       notEmpty: true
     }
+  },
+  password: {
+    type: conn.Sequelize.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      notEmpty: true
+    }
   }
 });
 
