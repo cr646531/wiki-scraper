@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { reset, loadUsers, destroyUser } from './store/actions';
+import { reset, loadUsers, destroyUser } from './store';
+import { Route, HashRouter as Router } from 'react-router-dom';
+import Users from './Users';
+import Nav from './Nav';
 
 class App extends Component{
   componentDidMount(){
     this.props.init();
   }
   render(){
-    const { users, destroyUser, reset } = this.props;
+    const { users } = this.props;
     return (
       <div>
-      <h1>Users</h1>
-      <button onClick={ reset }>Reset</button>
-      <ul>
-        {
-          users.map( user => <li onClick={()=> destroyUser(user)} key={ user.id }>{ user.name }</li>)
-        }
-      </ul>
+        <Router>
+          <div>
+            <Route component={ ({ location })=> <Nav path={ location.pathname }/> } />
+            <Route path='/users' component={ Users } /> 
+          </div>
+        </Router>
       </div>
     );
   }
@@ -25,8 +27,6 @@ class App extends Component{
 const mapDispatchToProps = (dispatch)=> {
   return {
     init: ()=> dispatch(loadUsers()),
-    destroyUser: (user)=> dispatch(destroyUser(user)),
-    reset: ()=> dispatch(reset())
   };
 };
 
