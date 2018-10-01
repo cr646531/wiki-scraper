@@ -9,7 +9,14 @@ const Users = ({ users, destroyUser, reset})=> {
       <button onClick={ reset }>Reset</button>
       <ul>
         {
-          users.map( user => <li onClick={()=> destroyUser(user)} key={ user.id }>{ user.name }</li>)
+          users.map( user => {
+            return (
+              <li key={ user.id }>
+                { user.name }
+                <button  onClick={()=> destroyUser(user)}>x</button>
+              </li>
+            );
+          })
         }
       </ul>
     </div>

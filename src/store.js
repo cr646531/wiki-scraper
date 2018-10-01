@@ -18,7 +18,8 @@ const usersReducer = ( state = [], action)=> {
       state = [...state, action.user];
       break;
     case UPDATE_USER:
-      state = [...state.map( user => user.id === action.user.id ? action.user : user )]
+      state = state.map( user => user.id === action.user.id ? action.user : user );
+      break;
     case DESTROY_USER:
       state = state.filter(user => user.id !== action.user.id);
       break;
