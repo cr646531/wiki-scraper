@@ -65,7 +65,13 @@ const destroyUser = (user)=> {
 const createUser = (user)=> {
 
 };
-const updateUser = (user)=> {
+const updateUser = (user, history)=> {
+  return (dispatch)=> {
+    return axios.put(`/api/users/${user.id}`, user)
+    .then( response => response.data)
+    .then( user => dispatch(_updateUser(user)))
+    .then( ()=> history.push('/users'));
+  }
 
 };
 const loadUsers = ()=> {
