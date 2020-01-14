@@ -5,6 +5,7 @@ import { Route, HashRouter as Router } from 'react-router-dom';
 import Users from './Users';
 import Nav from './Nav';
 import UserUpdate from './UserUpdate';
+import Links from './Links';
 
 class App extends Component{
   componentDidMount(){
@@ -19,6 +20,7 @@ class App extends Component{
             <Route component={ ({ location })=> <Nav path={ location.pathname }/> } />
             <Route exact path='/users' component={ Users } /> 
             <Route path='/users/:id' component={ UserUpdate } /> 
+            <Route path='/links' component={ Links } />
           </div>
         </Router>
       </div>

@@ -1,5 +1,6 @@
 const conn = require('./conn');
 const User = require('./User');
+const Link = require('./Link');
 
 const syncAndSeed = ()=> {
   return conn.sync({ force: true })
@@ -14,7 +15,8 @@ const syncAndSeed = ()=> {
 
 module.exports = {
   models: {
-    User
+    User,
+    Link
   },
   syncAndSeed
 };
